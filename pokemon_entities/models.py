@@ -1,4 +1,5 @@
 from django.db import models  # noqa F401
+from random import randint
 
 
 class Pokemon(models.Model):
@@ -15,3 +16,8 @@ class PokemonEntity(models.Model):
     lon = models.FloatField()
     appeared_at = models.DateTimeField()
     disappeared_at = models.DateTimeField()
+    level = models.IntegerField(default=randint(1, 10), blank=True)
+    health = models.IntegerField(default=randint(1, 10), blank=True)
+    strength = models.IntegerField(default=randint(1, 10), blank=True)
+    defence = models.IntegerField(default=randint(1, 10), blank=True)
+    stamina = models.IntegerField(default=randint(1, 10), blank=True)
