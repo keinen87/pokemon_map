@@ -45,10 +45,9 @@ def show_all_pokemons(request):
     for pokemon in pokemons:
         pokemon_on_page = {
             'pokemon_id': pokemon.id,
-            'img_url': request.build_absolute_uri(pokemon.image) if pokemon.image else None,
+            'img_url': pokemon.image.url if pokemon.image else None,
             'title_ru': pokemon.title
         }
-        #print(request.build_absolute_uri(pokemon.image))
         pokemons_on_page.append(pokemon_on_page)
 
     return render(request, 'mainpage.html', context={
@@ -62,9 +61,6 @@ def show_pokemon(request, pokemon_id):
         pokemons = json.load(database)['pokemons']
 
     for pokemon in pokemons:
-        from pprint import pprint
-        pprint(pokemon)
-        print(pokemon_id)
         if pokemon['pokemon_id'] == int(pokemon_id):
             requested_pokemon = pokemon
             break
